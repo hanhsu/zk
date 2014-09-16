@@ -1680,6 +1680,15 @@ jq(el).zk.center(); //same as 'center'
 		}
 		return this;
 	},
+	//Fix Bug ZK-2434, when setting vflex/hflex in layout and box,
+	//they will take the virtual element into consideration when calculating height/width
+	hasVParent: function() {
+		var el = this.jq[0];
+		if (el.z_vp || el.z_vpagt) {
+			return true;
+		} else
+			return false;
+	},
 
 	/** Fixes DOM elements when a widget's unbind_ is called
 	 * and it will hide the DOM element (display="none" or visibility="hidden").

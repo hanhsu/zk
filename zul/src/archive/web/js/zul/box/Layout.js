@@ -271,7 +271,8 @@ zul.box.Layout = zk.$extends(zk.Widget, {
 			hgh -= scrWdh || jq.scrollbarWidth();
 		
 		for (; xc; xc = xc.nextSibling) {
-			if (xc.isVisible()) {
+			//Bug ZK-2434: not considering the element with vparent (like popup)
+			if (xc.isVisible() && !zk(xc).hasVParent()) {
 				var cwgt = xc,
 					c = cwgt.$n(),
 					zkc = zk(c),
